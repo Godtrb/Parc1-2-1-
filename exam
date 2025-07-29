@@ -1,0 +1,103 @@
+def PromCalc(prom):
+    if prom >= 7:
+        return "Buen Desempeño"
+    else:
+        return "Debe Mejorar"
+def SatChecker (prom):
+            if prom>=7:
+                return "Satisfactorio"
+            else:
+                return "Fallido"
+class Scores:
+
+     def __init__(self, Punct, TeamW, Prod,prom,PormObs):
+        self.Punct = Punct
+        self.TeamW = TeamW
+        self.Prod = Prod
+        self.prom = prom
+        self.PromObs = PormObs
+
+class ContactInfo:
+    def __init__(self, Email, Phone):
+        self.Phone = Phone
+        self.Email = Email
+class Employee:
+    def __init__(self, name, dept,tenure,Scores,observ,contact):
+        self.name = name
+        self.dept = dept
+        self.tenure = tenure
+        self.scores = Scores
+        self.observ = observ
+        self.contact = contact
+def AddEmployee(ListEmploy):
+
+    numregs=int(input("Ingrese el numero de empleados a registrar:"))
+    for a in range(numregs):
+        ID =input("Ingrese el número de ID del empleado: ")
+        Name=input("Ingrese el nombre del empleado: ")
+        Dept=input("Ingrese en que departamento trabaja el empleado: ")
+        Age=int(input("Ingrese el tiempo que el empleado lleva con nosotros: "))
+        if Age>0 and Age<90:
+            Phone=int(input("Ingrese el numero telefonico del empleado:"))
+            Email=input("Ingrese el email del empleado: ")
+            ContactInform=ContactInfo(Email,Phone)
+            NotPunt=int(input("Ingrese punteo de puntualidad (0-10):"))
+            if NotPunt>=0 and NotPunt<=10:
+                NotTeam=int(input("Ingrese el punteo del trabajo en equipo (0-10): "))
+                if NotTeam>=0 and NotTeam<=10:
+                    NotProd=int(input("Ingrese el punteo de productividad (0-10): "))
+                    if NotProd>=0 and NotProd<=10:
+                        prom=(NotPunt+NotTeam+NotProd)/3
+                        Observ=PromCalc(prom)
+                        Succ=SatChecker(prom)
+                        Score=Scores(NotPunt,NotTeam,NotProd,prom,Succ)
+                        Employe=Employee(Name,Dept,Age,Score,Score.PromObs,ContactInform)
+                        ListEmploy[ID] = {}
+                        ListEmploy[ID]["nombre"] = Employe.name
+                        ListEmploy[ID]["tenure"] = Employe.tenure
+                        ListEmploy[ID]["Departamento"] = Employe.dept
+                        ListEmploy[ID]["Eval"] = {
+                                ["Puntualidad"] : Employe.Score.Punct,
+                                ["Equipo"] : Employe.Scores.TeamW,
+                                ["Productividad"] : Employe.Score.Prod,
+                                ["Observaciones"] : Employe.Score.PromObs,
+                                ["Promedio"] : Employe.Score.prom,
+                            }
+                    else:
+                        print("Dato invalido")
+                else:
+                    print("Dato invalido")
+            else:
+                print("Dato invalido")
+        else:
+            print("Dato invalido")
+
+
+
+
+
+
+opt =0;
+EmployeeReg={}
+while opt != 6:
+    print("----------Menu Empleados-----------")
+    print("1. Agregar Empleados")
+    print("2. Ver Empleados")
+    print("3. Buscar Empleados por Codigo")
+    print("4. Mostrar cuantos Empleados tiene evaluacion satisfactoria")
+    print("5. Indicar que empleado tiene el mejor promedio general")
+    print("6. Salir")
+    opt = int(input())
+    match opt:
+        case 1:
+            AddEmployee(EmployeeReg)
+        case 2:
+            for a, dat in ListEmploy.items():
+                print(f"Codigo: {dat} ")
+                print("Nombre: ",dat["nombre"])
+                print("Tiempo de trabajo: ",dat["Tenure"])
+                print("Departamento: ",dat["Departamento"])
+                print("Evaluaciones: ",dat["Eval"])
+                print("Promedio: ",dat["Promedio"])
+                print("Observaciones: ",dat["Observaciones"])
+                print("Promedio: ",dat["Promedio"])
