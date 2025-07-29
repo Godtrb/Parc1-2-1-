@@ -57,11 +57,11 @@ def AddEmployee(ListEmploy):
                         ListEmploy[ID]["tenure"] = Employe.tenure
                         ListEmploy[ID]["Departamento"] = Employe.dept
                         ListEmploy[ID]["Eval"] = {
-                                ["Puntualidad"] : Employe.Score.Punct,
-                                ["Equipo"] : Employe.Scores.TeamW,
-                                ["Productividad"] : Employe.Score.Prod,
-                                ["Observaciones"] : Employe.Score.PromObs,
-                                ["Promedio"] : Employe.Score.prom,
+                                ["Puntualidad"] : Employe.scores.Punct,
+                                ["Equipo"] : Employe.scores.TeamW,
+                                ["Productividad"] : Employe.scores.Prod,
+                                ["Observaciones"] : Employe.scores.PromObs,
+                                ["Promedio"] : Employe.scores.prom,
                             }
                     else:
                         print("Dato invalido")
